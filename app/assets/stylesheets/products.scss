@@ -1,0 +1,91 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.container-header {
+  background-image: url("https://i.ibb.co/VmNY0yq/disco-cover.jpg");
+
+  height: 300px;
+}
+
+.container-header-text {
+  color: white;
+}
+h1 {
+  font-size: 20px;
+}
+h2 {
+  font-size: 16px;
+}
+
+
+.container-2 {
+  display: inline-grid;
+  border: 1px solid black;
+
+  padding: 5px;
+  margin: 10px;
+
+  align-items: center;
+  text-align: center;
+  word-break: break-all;
+
+}
+
+button
+{
+width: 35px;
+}
+
+img {
+  height: 125px;
+  align-content: center;
+
+}
+
+.list-price {
+  text-decoration:line-through;
+}
+
+.our-price {
+  color: red;
+}
+
+.container-product {
+display: flex;
+margin: 15px;
+}
+
+
+.box {
+width: 350px;
+height: 500px;
+  margin: 25px;
+
+
+}
+
+.box img {
+  width: 200px;
+  height: 200px;
+  align-content:center;
+}
+
+
+
+
+.product-title {
+  font-size: 15px;
+  font-weight: bold;
+  word-break: break-all;
+}
+.sub-title {
+
+  color: #3F3F3F;
+  font-size: 15px;
+}
+
+.return-to-shop {
+  font-size: 10px;
+  color: grey;
+
+}

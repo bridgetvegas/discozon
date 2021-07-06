@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container-header">
+  <div class="container-header-text">
+  <h1> Discozon</h1>
+  <h3> <i>The place for all your disco needs </i></h3>
+  </div>
+</div>
+
+<div class="container">
+
+  <% @products.each do |product| %>
+    <div class="container-2">
+     <div><p><%= image_tag product.show_photo %></p></div>
+     <div><p class="product-title"><%= product.name %></p></div>
+     <div><p class="price"><%= number_to_currency(product.our_price) %></p></div>
+     <div><p class="show"><%= link_to 'Show', product %></p></div>
+    <%=button_to "Add to cart", line_items_path(:product_id => product.id), {class: 'btn btn-secondary btn-sm'}%>
+    </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Discozon</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <header>
+
+  <nav class="navbar">
+  <div id='navBar'>
+  <div id='topHalf'>
+    <div id='logoWrapper'>
+      <a href="/products">
+    <img id='logo' src="https://i.ibb.co/2jmt43B/Discozon2.png" />
+    </a>
+    </div>
+    <!-- <input type="text" placeholder="Search..." /> -->
+  <div class="search-bar">
+    <%= form_tag(search_page_path, :method => "get", class: 'navbar-form navbar-left') do %>
+  <div class="input-group">
+    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
+    </div>
+  </div>
+  </div>
+<% end %>
+
+  </div>
+
+  <div id='bottomHalf'>
+    <div id='department'>Departments</div>
+    <div id='sections'>
+      <div class="section"><a class="nav-bar link" href ="/products">Products</a></div>
+      <div class="section"><a class="nav-bar link" href ="/products">Best Sellers</a></div>
+      <div class="section"><a class="nav-bar link" href ="/products">New Releases</a></div>
+    </div>
+    <div id='accountStuff'>
+
+
+        <div class="section">
+          <%= link_to cart_path(session[:cart_id]) do%>
+            My Cart
+
+
+
+    </div>
+          <%if signed_in?%>
+    <div class ="section"><%=link_to current_user.email, edit_user_registration_path%></div>
+    <div class="section"><%=link_to "Logout", destroy_user_session_path, method: :delete%></div>
+  <%else%>
+    <div class="section"><%=link_to "Register", new_user_registration_path%></div>
+    <div class="section"><%=link_to "Login", new_user_session_path%></div>
+  <%end%>
+  <%end%>
+  </div>
+</div>
+  </nav>
+
+
+    </header>
+    <%= yield %>
+
+  </body>
+</html>

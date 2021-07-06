@@ -1,0 +1,11 @@
+<h3>Search Result</h3>
+
+    <% @results.each do |result| %>
+        <div class="container-2">
+         <div><p><%= image_tag result.show_photo %></p></div>
+         <div><p class="product-title"><%= result.name %></p></div>
+         <div><p class="price">$<%= result.our_price %></p></div>
+         <%# <!-- <div><p class="show"><%= link_to 'Show', product %></p></div> --> %>
+        <%# <%=button_to "Add to cart", line_items_path(:product_id => product.id), {class: 'btn btn-secondary btn-sm'}%> %>
+        </div>
+    <% end %>

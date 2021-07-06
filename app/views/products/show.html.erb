@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<p class="return-to-shop">
+<%= link_to 'Keep Shopping', products_path %>
+</p>
+  <div class="container-product">
+  <div class="box">
+  <%= image_tag Product.show_photo %>
+  </div>
+<div class="product-content">
+<p class="title">
+  <strong>Name:</strong>
+  <%= Product.name %>
+</p>
+
+<p class="sub-title">
+  <strong>Description:</strong>
+  <%= Product.description %>
+</p>
+<br>
+<p class="list-price">
+  <strong>List price: $</strong>
+  <%= Product.their_price %>
+</p>
+<br>
+<p class="our-price">
+  <strong>Our price: $</strong>
+  <%= Product.our_price %>
+</p>
+<br>
+<p class="add-to-cart">
+
+<%=button_to "Add to cart", line_items_path(:product_id => @product.id), {class: 'btn btn-xs'}%>
+
+</div>
+</div>
+
+
+<br>
+<br>
