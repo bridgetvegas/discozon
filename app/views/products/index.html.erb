@@ -7,16 +7,25 @@
   <h3> <i>The place for all your disco needs </i></h3>
   </div>
 </div>
+<br>
 
+<div class="sorter">
+      Sort by: &nbsp;
+      <%= sortable 'name', 'Name' %>
+      <%= sortable 'our_price', 'Price' %>
+</div>
+
+
+<br>
+<br>
 <div class="container">
 
   <% @products.each do |product| %>
     <div class="container-2">
-     <div><p><%= image_tag product.show_photo %></p></div>
-     <div><p class="product-title"><%= product.name %></p></div>
-     <div><p class="price"><%= number_to_currency(product.our_price) %></p></div>
-     <div><p class="show"><%= link_to 'Show', product %></p></div>
-    <%=button_to "Add to cart", line_items_path(:product_id => product.id), {class: 'btn btn-secondary btn-sm'}%>
+        <div><p><%= image_tag product.show_photo %></p></div>
+        <div><p class="product-title"><%= link_to product.name, product %></p></div>
+        <div><p class="price"><%= number_to_currency(product.our_price) %></p></div>
+        <%=button_to "Add to cart", line_items_path(:product_id => product.id), {class: 'btn btn-secondary btn-sm'} %>
     </div>
   <% end %>
 

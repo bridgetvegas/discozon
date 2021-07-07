@@ -1,3 +1,57 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+/* --------------------------------
+
+File#: _1_order-summary
+Title: Order Summary
+Descr: A template showing a recap of the cart items
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+  --order-summary-img-size: 7em;
+
+}
+
+.order-summary {}
+
+.order-summary__header {
+  border-radius: inherit;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.order-summary__footer {
+  border-radius: inherit;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.order-summary__item {
+  display: grid;
+  grid-template-columns: var(--order-summary-img-size) 1fr;
+  grid-gap: var(--order-summary-img-margin-right);
+  align-items: center;
+}
+
+.order-summary__img {
+  display: block;
+  margin-right: 10px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: .2s;
+
+  img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+}

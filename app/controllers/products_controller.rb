@@ -1,15 +1,36 @@
 class ProductsController < ApplicationController
 
    before_action :authenticate_user!, except: [:index, :show]
+   helper_method :sort_column, :sort_direction
+   require 'bigdecimal'
+   require 'bigdecimal/util'
 
    # GET /products
    # GET /products.json
    def index
-     @products = Product.all
+     @products = Product.order(sort_column + " " + sort_direction)
+     if params[:search].present? && params[:filter].present?
+       @parameter = params[:search].downcase
+       @filter_param = params[:filter].to_d
+       @products = Product.where("lower(name) LIKE :search", search: "%#{@parameter}%").where("our_price <= ?", params[:filter].to_d)
+     elsif params[:search].present? && params[:filter].blank?
+       @parameter = params[:search].downcase
+       @filter_param = params[:filter].to_d
+       @products = Product.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+     elsif params[:search].blank? && params[:filter].present?
+       @parameter = params[:search].downcase
+       @filter_param = params[:filter].to_d
+       @products = Product.where("our_price <= ?", params[:filter].to_d)
+     end
+
    end
 
    def new
      @product = Product.new
+   end
+
+   def show
+     @product = Product.find(params[:id])
    end
 
    def create
@@ -33,17 +54,21 @@ class ProductsController < ApplicationController
      redirect_to products_path
    end
 
-   def search
-     if params[:search].blank?
-       redirect_to(root_path, alert: "Empty field!") and return
-     else
-       @parameter = params[:search].downcase
-       @results = Product.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
-     end
-   end
 
    private
      def product_params
        params.require(:product).permit(:name, :our_price)
      end
+
+     def sort_column
+       Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
+     end
+
+     def sort_direction
+       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+     end
+     def set_product
+       @product= Product.find(params[:id])
+     end
+
  end

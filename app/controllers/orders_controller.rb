@@ -25,6 +25,6 @@ end
 
 private
   def order_params
-    params.require(:order).permit(:name, :order_email, :address, :pay_method)
+    params.require(:order).permit(:name, :email, :address, :pay_method)
   end
 end

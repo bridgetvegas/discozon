@@ -14,24 +14,36 @@
     <header>
 
   <nav class="navbar">
-  <div id='navBar'>
-  <div id='topHalf'>
-    <div id='logoWrapper'>
-      <a href="/products">
-    <img id='logo' src="https://i.ibb.co/2jmt43B/Discozon2.png" />
-    </a>
-    </div>
-    <!-- <input type="text" placeholder="Search..." /> -->
-  <div class="search-bar">
-    <%= form_tag(search_page_path, :method => "get", class: 'navbar-form navbar-left') do %>
-  <div class="input-group">
-    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
-    <div class="input-group-btn">
-      <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
-    </div>
-  </div>
-  </div>
-<% end %>
+    <div id='navBar'>
+      <div id='topHalf'>
+        <div id='logoWrapper'>
+          <a href="/products">
+            <img id='logo' src="https://i.ibb.co/2jmt43B/Discozon2.png" />
+          </a>
+        </div>
+
+        <div class="header-form">
+          <div class="search-bar">
+            <%= form_tag(products_path, :method => "get", class: "form-inline") do %>
+              <div class="input-group">
+                <%= search_field_tag :search %>
+              </div>
+          </div>
+          <div class="filter-button">
+            <%= select_tag :filter, options_for_select([[:prompt => "Price Range..."],
+              ["Under $10", "10.00"],
+              ["Under $25", "25.00"],
+              ["Under $50", "50.00"],
+              ["Under $100", "100.00"],
+              ["Under $150","150.00"]
+              ], params[:filter])%>
+          </div>
+          <div class="input-group-btn">
+            <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
+          </div>
+      </div>
+
+  <% end %>
 
   </div>
 
@@ -43,21 +55,16 @@
       <div class="section"><a class="nav-bar link" href ="/products">New Releases</a></div>
     </div>
     <div id='accountStuff'>
-
-
-        <div class="section">
-          <%= link_to cart_path(session[:cart_id]) do%>
+      <div class="section">
+        <%= link_to cart_path(session[:cart_id]) do%>
             My Cart
-
-
-
-    </div>
-          <%if signed_in?%>
-    <div class ="section"><%=link_to current_user.email, edit_user_registration_path%></div>
-    <div class="section"><%=link_to "Logout", destroy_user_session_path, method: :delete%></div>
-  <%else%>
-    <div class="section"><%=link_to "Register", new_user_registration_path%></div>
-    <div class="section"><%=link_to "Login", new_user_session_path%></div>
+      </div>
+      <%if signed_in?%>
+        <div class ="section"><%=link_to current_user.email, edit_user_registration_path%></div>
+        <div class="section"><%=link_to "Logout", destroy_user_session_path, method: :delete%></div>
+      <%else%>
+        <div class="section"><%=link_to "Register", new_user_registration_path%></div>
+        <div class="section"><%=link_to "Login", new_user_session_path%></div>
   <%end%>
   <%end%>
   </div>

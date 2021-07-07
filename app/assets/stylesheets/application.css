@@ -13,18 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+ @import 'foundation-icons';
  #navBar{
    background-color:black;
    height:100px;
    color:white;
    width: 100%;
  }
+.header-form {
+  display:inline-block;
+  top:10px;
+  height: 15px;
+}
 
  a {
    color: white;
  }
  #topHalf{
    height:50px;
+   display:inline-block;
 
  }
  #bottomHalf{
@@ -46,12 +54,25 @@ margin-bottom: 25px;
 
  }
 
- #search-bar{
-   vertical-align:center;
-   margin-top:35px;
-   border-radius:10px;
-   height:30px;
-   width:250px;
+ .search-bar{
+   position:relative;
+   display:inline-block;
+   top:10px;
+  /* border-radius:10px; */
+   /* height:20px; */
+   /* width:250px; */
+ }
+
+ .filter-button {
+   position:relative;
+   display:inline-block;
+   top:10px;
+ }
+
+ .input-group-btn {
+   position:relative;
+   display:inline-block;
+   top:10px;
  }
  #department{
    font-size:20px;

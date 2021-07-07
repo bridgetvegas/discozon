@@ -4,27 +4,27 @@
 </p>
   <div class="container-product">
   <div class="box">
-  <%= image_tag Product.show_photo %>
+  <%= image_tag @product.show_photo %>
   </div>
 <div class="product-content">
 <p class="title">
   <strong>Name:</strong>
-  <%= Product.name %>
+  <%= @product.name %>
 </p>
 
 <p class="sub-title">
   <strong>Description:</strong>
-  <%= Product.description %>
+  <%= @product.description %>
 </p>
 <br>
 <p class="list-price">
   <strong>List price: $</strong>
-  <%= Product.their_price %>
+  <%= @product.their_price %>
 </p>
 <br>
 <p class="our-price">
   <strong>Our price: $</strong>
-  <%= Product.our_price %>
+  <%= @product.our_price %>
 </p>
 <br>
 <p class="add-to-cart">

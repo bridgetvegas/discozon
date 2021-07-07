@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get 'line_items/:id' => "line_items#show", as: "line_item"
   delete 'line_items/:id' => "line_items#destroy"
 
-  get '/search' => 'products#search', :as => 'search_page'
+
+  # get '/orders' => 'orders#index'
+  # get '/orders/new' => 'orders#new'
+  post '/orders/new' => 'orders#new'
+  get '/filter' => 'products#filter_results'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

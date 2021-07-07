@@ -1,3 +1,46 @@
+<aside class="order-summary bg-contrast-lower radius-md ">
+  <header class="order-summary__header bg-contrast-lower flex justify-between padding-sm">
+    <p class="text-sm">Your cart <span class="sr-only">items</span></p>
+    <%= link_to cart_path(session[:cart_id]) do%> Edit Cart<% end %>
+  </header>
+  <% @current_cart.line_items.each do |line_item| %>
+
+
+  <div class="padding-x-sm">
+    <ul class="flex flex-column gap-sm">
+      <li class="order-summary__item">
+      <div class="order-summary__img">  <%= image_tag line_item.product.show_photo %></div>
+
+        <div class="flex flex-wrap justify-between gap-xxxs">
+          <div>
+            <p class="color-contrast-higher"><%= line_item.product.name %></p>
+            <p class="color-contrast-medium text-sm">Qty: <%= line_item.quantity %></p>
+          </div>
+
+          <p class="color-contrast-higher"><span class="sr-only">Price:</span><%= number_to_currency(line_item.product.our_price) %></p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <% end %>
+
+  <footer class="order-summary__footer bg-contrast-lower padding-x-sm padding-bottom-sm">
+    <div class="margin-y-sm padding-y-sm border-top border-bottom">
+      <div class="flex flex-column flex-row@md gap-xxs">
+        <input aria-label="Discount code" class="form-control flex-grow min-width-0" type="email" placeholder="Discount code">
+        <button class="btn btn--subtle">Apply</button>
+      </div>
+    </div>
+
+    <ul class="text-sm flex flex-column gap-xxs">
+      <li class="flex justify-between"><i>Subtotal</i> <i><%= number_to_currency(@current_cart.sub_total) %></i></li>
+      <li class="flex justify-between"><i>Delivery</i> <i>Free</i></li>
+      <li class="flex justify-between font-bold"><i>Total</i> <i><%= number_to_currency(@current_cart.sub_total) %></i></li>
+    </ul>
+  </footer>
+</aside>
+
 <%= form_for(@order) do |f| %>
   <p>
     <%= f.label :name %><br>

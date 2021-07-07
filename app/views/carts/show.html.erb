@@ -2,25 +2,34 @@
   <%= link_to 'Keep Shopping', products_path, class: 'button is-warning' %>
 </div>
 <hr />
-<h2>Cart show</h2>
-<ul>
-  <% @cart.line_items.each do |line_item| %>
-    <li>Item: <%= line_item.product.name %>/ Price: <%= number_to_currency(line_item.product.our_price) %>/ Quantity: <%= line_item.quantity %>/ Total Price: <%= number_to_currency(line_item.total_price) %>
+<h2>Order Summary</h2>
 
-    <ul>
-      <li>
-        <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %>
-        <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %>
-      </li>
-      <li>
-        <%= link_to "Remove item", line_item_path(line_item), method: :delete %>
-      </li>
-    </ul>
+<% @current_cart.line_items.each do |line_item| %>
 
-  <% end %>
-</ul>
+
+<div class="padding-x-sm">
+  <ul class="flex flex-column gap-sm">
+    <li class="order-summary__item">
+    <div class="order-summary__img">  <%= image_tag line_item.product.show_photo %></div>
+
+      <div class="flex flex-wrap justify-between gap-xxxs">
+        <div>
+          <p class="color-contrast-higher"><%= line_item.product.name %></p>
+          <p class="color-contrast-medium text-sm">Qty: <%= line_item.quantity %></p>
+        </div>
+        <%= link_to "Add one", line_item_add_path(:id => line_item), method: :post %> |
+        <%= link_to "Reduce one", line_item_reduce_path(:id => line_item), method: :post %> |
+        <%= link_to "Remove item", line_item_path(line_item), method: :delete %> |
+        <p class="color-contrast-higher"><span class="sr-only">Price:</span><%= number_to_currency(line_item.product.our_price) %></p>
+      </div>
+    </li>
+
+  </ul>
+</div>
+<% end %>
+
 <h3>Sub total: <%= number_to_currency(@cart.sub_total) %></h3>
 
-<%= link_to "Proceed to checkout", new_order_path %><br>
+<%= button_to "Proceed to checkout", new_order_path %><br>
 
 <%= link_to "Empty cart", cart_path(@current_cart),method: :delete, data: {confirm: "Are you sure?"} %>
